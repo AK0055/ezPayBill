@@ -25,44 +25,44 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>ezpaybill</title>
+        <link rel="icon" href="/mistore.png" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-         ezPayBill
-        </h1>
+      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">ezPayBill</span></h1>
 
-        <p className={styles.description}>
+
+        <p class="max-w-lg text-2xl font-semibold leading-loose text-gray-900">
           Get started by choosing your store type 
         </p>
 
         <div className={styles.grid}>
           <a  onClick={storehandler1} className={styles.card}>
-            <h3>Mi Home</h3>
+            <h3 class="font-semibold">Mi Home</h3>
             <Image
-        src={mihome}
-        alt="Mi home"
-         width={225} 
-        height={225} 
-        // blurDataURL="data:..." automatically provided
-        // placeholder="blur" // Optional blur-up while loading
-      />
-  
+            src={mihome}
+            alt="Mi home"
+            width={225} 
+            height={225} 
+            // blurDataURL="data:..." automatically provided
+            // placeholder="blur" // Optional blur-up while loading
+          />
+        
           </a>
           
           
           <a onClick={storehandler2} className={styles.card}>
-            <h3>Mi Store</h3>
+            <h3 class="font-semibold">Mi Store</h3>
             <Image
-        src={mistore}
-        alt="Mi store"
-        width={225} 
-        height={225}
-        // blurDataURL="data:..." automatically provided
-        // placeholder="blur" // Optional blur-up while loading
-      />
+            src={mistore}
+            alt="Mi store"
+            width={225} 
+            height={225}
+            // blurDataURL="data:..." automatically provided
+            // placeholder="blur" // Optional blur-up while loading
+          />
   
           </a>
           
@@ -72,7 +72,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://www.mi.com/in/"
           target="_blank"
           rel="noopener noreferrer"
         >
