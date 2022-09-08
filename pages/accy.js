@@ -9,6 +9,7 @@ import { Menu } from '@headlessui/react'
 import {Transition } from '@headlessui/react'
 import { Fragment,useRef} from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+
 import mistore from '../public/mistore.png'
 import Link from 'next/link'
 import { useEffect,useState } from 'react';
@@ -48,14 +49,14 @@ export default function Home() {
     router.push('/page2')
   }
   const colorsecred=()=>{
-      product.prodcolor='red'
-      console.log(product)
-  }
-  const colorsecgreen=()=>{
-    product.prodcolor='green'
+    product.prodcolor='red'
+    console.log(product)
+}
+const colorsecgreen=()=>{
+  product.prodcolor='green'
 }
 const colorsecblue=()=>{
-  product.prodcolor='blue'
+product.prodcolor='blue'
 }
   return (
     <div class="dark:bg-gray-800 text-gray-900 dark:text-white">
@@ -76,11 +77,11 @@ const colorsecblue=()=>{
     
 <div class="p-10 w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="p-8 rounded-t-lg" src="/sp.jpg" alt="product image"/>
+        <img class="p-8 rounded-t-lg" src="/acc.jpg" alt="product image"/>
     </a>
     <div class="px-5 pb-5">
         <a href="#">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">10000mAh Mi Power Bank 3i Black</h5>
             </a>
         <div class="flex flex-row items-center mt-2.5 mb-5">
         <a class = "p-2" onClick={colorsecred}>
@@ -98,7 +99,9 @@ const colorsecblue=()=>{
         <circle cx="20" cy="20" r="20" stroke="black" stroke-width="1" fill="blue" />
         </svg>
         </a>
-        <div class="p-2">
+
+
+<div class="p-2">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-100 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
@@ -176,7 +179,7 @@ const colorsecblue=()=>{
             <svg aria-hidden="true" class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> */}
         </div>
         <div class="flex justify-between items-center">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">₹11,999</span>
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">₹1,999</span>
             <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
         </div>
     </div>

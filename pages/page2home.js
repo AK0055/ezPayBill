@@ -23,21 +23,9 @@ export default function Home() {
     prodType.prodtype='Smart Camera'
     router.push('/scam')
   }
-  const prodhandler2=()=> {
-    prodType.prodtype='Smart Purifiers'
-    router.push('/airp')
-  }
-  const prodhandler3=()=> {
-    prodType.prodtype='Smart lights'
-    router.push('/tv')
-  }
   const prodhandler4=()=> {
     prodType.prodtype='Smart cleaners'
-    router.push('/laptop')
-  }
-  const prodhandler5=()=> {
-    prodType.prodtype='Accessory'
-    router.push('/accy')
+    router.push('/sc')
   }
   return (
     <div class="dark:bg-gray-800 text-gray-900 dark:text-white">
@@ -57,7 +45,7 @@ export default function Home() {
         </p> */}
 
 <div className={styles.grid}>
-          <a  onClick={prodhandler2} className={styles.card}>
+          <a  onClick={prodhandler1} className={styles.card}>
             <h3>Smart Cameras</h3>
             <Image
             src={scam}
@@ -67,35 +55,9 @@ export default function Home() {
             // blurDataURL="data:..." automatically provided
             // placeholder="blur" // Optional blur-up while loading
           />
-  
           </a>
-          
-          
-          <a onClick={prodhandler3} className={styles.card}>
-            <h3>Smart Purifiers</h3>
-            <Image
-            src={ap}
-            alt="Smart Purifiers"
-            width={225} 
-            height={225}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
   
-          </a>
           <a onClick={prodhandler4} className={styles.card}>
-            <h3>Smart Lights</h3>
-            <Image
-            src={sl}
-            alt="Smart Lights"
-            width={225} 
-            height={225}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
-  
-          </a>
-          <a onClick={prodhandler5} className={styles.card}>
             <h3>Smart Cleaners</h3>
             <Image
             src={sc}
