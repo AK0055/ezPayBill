@@ -1,10 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import mihome from '../public/mihome.png'
-import mistore from '../public/mistore.png'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-
 import { useEffect,useState } from 'react';
 import {storeType} from "./index";
 import Footer from "./Footer";

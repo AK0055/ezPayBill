@@ -1,9 +1,5 @@
 import Head from 'next/head'
 import {storedet} from "../comps/storedetails";
-import { Menu } from '@headlessui/react'
-import {Transition } from '@headlessui/react'
-import { Fragment,useRef} from 'react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { motion } from 'framer-motion';
 import {useState,useEffect } from 'react';
 import { useRouter } from 'next/router'
@@ -23,23 +19,22 @@ export default function Home() {
   
   const firster=()=>{
     console.log(cart.det)
-    //if (cart.det.price){
         try{
             settotal(cart.det.map(item => item.details.price).reduce((prev, next) => prev + next))
         setitems(cart.det.length)
         }
         catch(err){
             console.log(err)
-        }
-        
-   // }
-    
+        } 
   } 
   useEffect( firster,[])
   
   const previouspager=()=> {
     console.log(cart)
     router.back()
+  }
+  const checkouter=()=> {
+    router.push('/checkout')
   }
   
   return (
@@ -64,7 +59,7 @@ export default function Home() {
                   borderRadius: "100%"
 
               }}>
-   <button class="text-lg font-bold text-blue-600  dark:text-blue-500">
+   <button onClick={checkouter} class="text-lg font-bold text-blue-600  dark:text-blue-500">
             
             Checkout (₹ {total})
             </button>
