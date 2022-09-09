@@ -12,8 +12,12 @@ import Navbar from "./Navbar";
 import {storedet} from "../comps/storedetails";
 
 export var moreStore = {
-  name: '',
-  pos:'',
+  name: 'Xcompany',
+  pos:'x09203',
+  street:'21 Jump Street',
+  zip: 787843,
+  city:'Oslo',
+  country:'Norway'
 };
 
 export default function Home() {
@@ -21,9 +25,17 @@ export default function Home() {
 
   const [name,setname]= useState('')
   const [pos,setpos]= useState('')
+  const [street,setstreet]= useState('')
+  const [zip,setzip]= useState(0)
+  const [city,setcity]= useState('')
+  const [country,setcountry]= useState('')
   const addstore=()=> {
     moreStore.name = name
     moreStore.pos= pos
+    moreStore.street=street
+    moreStore.zip=zip
+    moreStore.city=city
+    moreStore.country=country
     console.log(moreStore)
     const returnedclient = Object.assign(storedet,moreStore);
     console.log(moreStore)
@@ -59,7 +71,20 @@ export default function Home() {
         <input onChange={(e) => setname(e.target.value)} type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Store Name" required/>
         <label for="POS ID" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">POS ID</label>
         <input onChange={(e) => setpos(e.target.value)} type="text" id="pos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="POS ID" required/>
-         
+          <label for="caddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Street</label>
+          <input onChange={(e) => setstreet(e.target.value)} type="text" id="caddress" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="21 Jump Street" required/>
+      
+          <label for="czip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zip</label>
+          <input onChange={(e) => setzip(e.target.value)} type="number" id="czip" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" 9990"  required/>
+      
+      
+          <label for="ccity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">City</label>
+          <input onChange={(e) => setcity(e.target.value)} type="text" id="ccity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Oslo" required/>
+        
+      
+          <label for="ccountry" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Country</label>
+          <input onChange={(e) => setcountry(e.target.value)} type="text" id="ccountry" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Norway" required/>
+        
         </div>
       </div>
       <div class="px-5">

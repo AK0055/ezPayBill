@@ -19,9 +19,8 @@ export var prodType = {
 };
 export default function Home() {
   const router = useRouter()   
-  const prodhandler1=()=> {
-    prodType.prodtype='Bundle'
-    router.push('/bundle')
+  const previouspager=()=> {
+    router.back()
   }
   const prodhandler2=()=> {
     prodType.prodtype='Smartphone'
@@ -111,7 +110,9 @@ export default function Home() {
           </a>
         </div>
       </div>
-
+      <div class="p-5">
+<button onClick={previouspager} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+</div>
       <Footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

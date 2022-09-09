@@ -5,17 +5,20 @@ import firebaseConfig from "../comps/firebaseconfig"; */
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion';
 import {storeType} from "./index";
-
+import { useEffect,useState } from 'react';
+import {cart} from '../comps/carter'
 /* import {
   auth,
   db
 } from "../comps/firebaser"; */
 /* import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth, signOut,onAuthStateChanged } from "firebase/auth"; */
-export default function Navbar() {
+export default function Navbar(props) {
   if (storeType.storetype=='Mi Store') var name='/mistore.png'
   else var name='/mihome.png'
     const [colorTheme, setTheme] = useDarkMode();
+    const [carter, setcarter] = useState(0)
+    const [carth, setcarth] = useState(false)
     /* const [user, loading, error] = useAuthState(auth); */
     const router = useRouter();
     const logout = () => {
@@ -24,17 +27,26 @@ export default function Navbar() {
         signOut(auth); */
         router.push('/');
       };
-      const cart = () => {
-        /* const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
-        signOut(auth); */
+      const cartpage = () => {
+         cart.det = cart.det.filter(check);
+
+        function check(x) {
+          return x.name != 'demo'
+        }  
         router.push('/cart');
       };
-     
+      const cartadd = () => {
+        setcarter(carter+props.data)
+      };
+      const cartrem = () => {
+        setcarter(carter-props.data)
+      };
+      
     return(
         
         <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
         <div class="container flex flex-wrap justify-between items-center ">
+
             {colorTheme === "light" ? (
              
         <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
@@ -90,7 +102,7 @@ export default function Navbar() {
             <div class="flex md:order-2 ">
                 
                 
-                <button onClick={cart} type="button" class="flex flex-row text-black bg-green-200 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><img src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/>4</button>
+                <button onClick={cartpage} type="button" class="flex flex-row text-black bg-green-200 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><img src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/>{cart.count}</button>
                 
                
                 <button onClick={logout} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>

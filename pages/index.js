@@ -35,7 +35,7 @@ export default function Home() {
 
 
         <p class="max-w-lg text-2xl font-semibold leading-loose text-gray-900">
-          Get started by choosing your store type 
+          Choose your Store type 
         </p>
 
         <div className={styles.grid}>
