@@ -34,7 +34,10 @@ export default function Home() {
     router.back()
   }
   const order=()=> {
-    router.push('/order')
+    if(cstoredet.del=='Online')
+    router.push('/orderpay')
+    else
+    router.push('/orderdone')
   }
   
   return (
