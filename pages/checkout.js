@@ -9,24 +9,29 @@ import {cstoredet} from "../comps/cstoredetails";
 export var moreStore = {
   name: 'Xcompany',
   pos:'x09203',
-  street:'21 Jump Street',
+  street:'9 Grove Street',
   zip: 787843,
   city:'Oslo',
   country:'Norway',
-  del:'Offline'
+  del:'Offline',
+  con:'Email',
+  num:'389238923',
+  em:'soe@eg.com'
 };
 
 export default function Home() {
   const router= useRouter()
 
-  const [name,setname]= useState('')
-  const [pos,setpos]= useState('')
-  const [street,setstreet]= useState('')
-  const [zip,setzip]= useState(0)
-  const [city,setcity]= useState('')
-  const [country,setcountry]= useState('')
-  const [del,setdel]= useState('')
+  const [name,setname]= useState('Xcompany')
+  const [pos,setpos]= useState('x09203')
+  const [street,setstreet]= useState('9 Grove Street')
+  const [zip,setzip]= useState(787843)
+  const [city,setcity]= useState('Oslo')
+  const [country,setcountry]= useState('Norway')
+  const [del,setdel]= useState('Offline')
   const [con,setcon]= useState('')
+  const [num,setnum]= useState('389238923')
+  const [em,setem]= useState('soe@eg.com')
   const addstore=()=> {
     moreStore.name = name
     moreStore.pos= pos
@@ -36,21 +41,23 @@ export default function Home() {
     moreStore.country=country
     moreStore.del=del
     moreStore.con=con
+    moreStore.num=num
+    moreStore.em=em
     console.log(moreStore)
     const returnedclient = Object.assign(cstoredet,moreStore);
     console.log(moreStore)
   }
   const previouspager=()=> {
     //addlook();
-    router.push('/')
+    router.back()
   }
   const nextpager=()=> {
     addstore();
     console.log(del)
-    router.push('/pay')
+    router.push('/summary')
   }
   return (
-    <div class="p-5 dark:bg-gray-800 text-gray-900 dark:text-white">
+    <div class="p-5  dark:bg-gray-800 text-gray-900 dark:text-white">
       <Head>
         <title>{storeType.storetype}</title>
         <link rel="icon" href="/mistore.png" />

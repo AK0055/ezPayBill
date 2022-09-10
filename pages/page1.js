@@ -46,7 +46,7 @@ export default function Home() {
     router.push(goto)
   }
   return (
-    <div class="p-5 dark:bg-gray-800 text-gray-900 dark:text-white">
+    <div class="p-5  dark:bg-gray-800 text-gray-900 dark:text-white">
       <Head>
         <title>{storeType.storetype}</title>
         <link rel="icon" href="/mistore.png" />

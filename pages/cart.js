@@ -38,7 +38,7 @@ export default function Home() {
   }
   
   return (
-    <div class="dark:bg-gray-800 text-gray-900 dark:text-white">
+    <div class="w-screen h-screen dark:bg-gray-800 text-gray-900 dark:text-white">
       <Head>
         <title>Products</title>
         
@@ -59,7 +59,7 @@ export default function Home() {
                   borderRadius: "100%"
 
               }}>
-   <button onClick={checkouter} class="text-lg font-bold text-blue-600  dark:text-blue-500">
+   <button onClick={checkouter} class="text-lg font-bold text-blue-600  dark:text-blue-500 hover:underline">
             
             Checkout (₹ {total})
             </button>
@@ -86,6 +86,9 @@ export default function Home() {
             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
             ₹ {data.details.price}
             </div>
+           {/*  <button  type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
+             focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Remove</button> */}
+
         </div>
     </li>
       ))}
@@ -98,7 +101,7 @@ export default function Home() {
 <div class="p-5">
 <button onClick={previouspager} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
 </div>
-      <Footer>
+       <Footer>
         <a
           href=""
           target="_blank"
@@ -107,8 +110,8 @@ export default function Home() {
           Powered by{' '}
           <img src="/mihome.png" alt="mi" className="logo" />
         </a>
-      </Footer>
-    
+      </Footer> 
+   
     </div>
     
   )

@@ -27,6 +27,9 @@ export default function Navbar(props) {
         signOut(auth); */
         router.push('/');
       };
+      const order=()=> {
+        router.push('/order')
+      }
       const cartpage = () => {
          cart.det = cart.det.filter(check);
 
@@ -96,16 +99,22 @@ export default function Navbar(props) {
 
               }}/>
           
-                  <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">ezPayBill</span>
+                  <h1 class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ezPayBill</h1>
             </a>
             </Link>
-            <div class="flex md:order-2 ">
-                
-                
-                <button onClick={cartpage} type="button" class="flex flex-row text-black bg-green-200 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><img src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/>{cart.count}</button>
-                
-               
-                <button onClick={logout} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
+            {/* {router.pathname=='/summary' &&
+            <div class="flex flex-row md:order-3 ">
+        
+            <button onClick={order} type="button" 
+              class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
+              text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                Place Order</button>
+                </div> } */}
+                <div class="flex md:order-3 ">
+                <button onClick={cartpage} type="button" class="flex flex-row text-lg text-black bg-green-200 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><img src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/>({cart.count})</button>
+                </div>    
+                <div class="flex md:order-3 "> 
+                <button onClick={logout} type="button" class="text-main text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
                 
             </div>
             {/* <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-2" aria-expanded="false">
@@ -129,12 +138,12 @@ export default function Navbar(props) {
               <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 <li>
                   <Link href='/'>
-                  <a  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
+                  <a  class="block py-2 pr-4 pl-3 text-lg text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
                   </Link>
                 </li>
                 <li>
                     <Link href='/yourorders'>
-                  <a  class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Your Orders</a>
+                  <a  class="block py-2 pr-4 pl-3 text-lg text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Your Orders</a>
                       </Link>
                 </li>
                 

@@ -39,7 +39,7 @@ export default function Home() {
     router.push('/accy')
   }
   return (
-    <div class="dark:bg-gray-800 text-gray-900 dark:text-white">
+    <div class=" dark:bg-gray-800 text-gray-900 dark:text-white">
       <Head>
         <title>Products</title>
         {console.log(storedet.name)}
