@@ -39,7 +39,7 @@ return(
       </ul>
 </nav> */}
   
-<footer className="sticky bottom-0 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+<footer className="p-3 sticky bottom-0 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
     
     <ul class="flex flex-wrap items-center mt-3 text-lg text-gray-500 dark:text-gray-400 sm:mt-0">
     <li>
