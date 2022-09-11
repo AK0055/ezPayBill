@@ -8,8 +8,6 @@ import Navbar from "./Navbar";
 import {cart} from "../comps/carter";
 
 export default function Home() {
-  
-  
   const router = useRouter()   
   const [total,settotal]= useState(0)
   const [items,setitems]= useState(0)

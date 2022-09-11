@@ -35,7 +35,7 @@ export var paytype1 = {
         if(paytype1.paytype=='Cash')
           router.push('/ordersucc')
         else
-          router.push('/pay')
+          router.push('/payer')
       }
       return (
         <div class="p-5  dark:bg-gray-800 text-gray-900 dark:text-white">
