@@ -111,7 +111,7 @@ export default function Navbar(props) {
                 Place Order</button>
                 </div> } */}
                 <div class="flex md:order-3 ">
-                <button onClick={cartpage} type="button" class="flex flex-row text-lg text-black bg-green-200 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-2.5 py-2.5 text-center mr-3 md:mr-0 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                <button onClick={cartpage} type="button" class="flex flex-row text-lg text-black bg-green-200 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-2.5 py-2.5 text-center mr-3 md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                   {/* <img src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/>({cart.count}) */}
                   <svg class="flex-1 w-8 h-8 fill-current" viewbox="0 0 24 24">
       <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/>
