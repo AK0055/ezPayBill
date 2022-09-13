@@ -19,7 +19,8 @@ export default function Home() {
     console.log(cart.det)
         try{
             settotal(cart.det.map(item => item.details.price).reduce((prev, next) => prev + next))
-        setitems(cart.det.length)
+            setitems(cart.det.length)
+        
         }
         catch(err){
             console.log(err)
@@ -32,8 +33,10 @@ export default function Home() {
     router.back()
   }
   const order=()=> {
+    console.log('Total',total)
+    cstoredet.total=total
     if(cstoredet.del=='Online')
-    router.push('/orderpay')
+    router.push('/payer')
     else
     router.push('/orderdone')
   }

@@ -5,9 +5,10 @@ export var cart = {
         name:'demo', 
         details:{
             img:'/mihome.png',
-            price:0,
+            price:100,
             qty:1,
             col:'Red'
         }
-    }]
+    }],
+    purch: false
   };

@@ -36,7 +36,7 @@ export default function Navbar(props) {
         function check(x) {
           return x.name != 'demo'
         }  
-        router.push('/cart');
+        router.push('/cart'); 
       };
       const cartadd = () => {
         setcarter(carter+props.data)

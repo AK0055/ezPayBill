@@ -20,8 +20,14 @@ export default function Home() {
   const firster=()=>{
     console.log(cart.det)
         try{
+          if(cart.purch==false){
             settotal(cart.det.map(item => item.details.price).reduce((prev, next) => prev + next))
-        setitems(cart.det.length)
+            setitems(cart.det.length)
+          }
+          else{
+            settotal(0)
+            setitems(0)       
+          }
         }
         catch(err){
             console.log(err)

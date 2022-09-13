@@ -23,12 +23,13 @@ export default function Home() {
   const [items,setitems]= useState(0)
   const [carter,setcarter]= useState(false)
   const [state, setstate] = useState(0)
-  
+  const [txn, settxn] = useState('')
+  const [purch,setpurch]=useState(false)
   const firster=()=>{
-    merchantCheckoutFile();
     
-    let orderId = "Order_" + new Date().getTime();
- 
+    merchantCheckoutFile();
+    console.log(cstoredet.total)
+    let orderId = "ORD" + new Date().getTime();
    // Sandbox Credentials
    let mid = "VhbDgR06153110234284"; // Merchant ID
    let mkey = "sqH%hL3TWRgaua30"; // Merchant Key
@@ -41,11 +42,11 @@ export default function Home() {
      orderId: orderId,
      callbackUrl: "http://localhost:3000/",
      txnAmount: {
-       value: 100,
+       value: cstoredet.total,
        currency: "INR",
      },
      userInfo: {
-       custId: "1001",
+       custId: "CUS" + new Date().getTime(),
      },
    };
  
@@ -87,13 +88,13 @@ export default function Home() {
            datag.txntoken= JSON.parse(response).body.txnToken
            datag.order= orderId
            datag.mid= mid
-           datag.amount= 100
+           datag.amount= 
            setPaymentData({
             ...paymentData,
             token: JSON.parse(response).body.txnToken, 
             order: orderId, 
             mid: mid,
-            amount: 100
+            amount: cstoredet.total
         })
        });
      });
@@ -151,12 +152,39 @@ export default function Home() {
         "flow": "DEFAULT",
         "merchant": {
           "mid": "VhbDgR06153110234284",
-          "redirect": true
+          "redirect": false
         },
         "handler": {
           "transactionStatus":
 function transactionStatus(paymentStatus){
             console.log(paymentStatus);
+            settxn(paymentStatus.STATUS)
+            if (txn=="TXN_FAILURE")
+            router.reload('/payer')
+            if(txn=="TXN_SUCCESS"){
+                cart.purch=true
+                setpurch(true)
+                setstate(0)
+            }
+            else{
+                cart.purch=false
+                setpurch(false)
+                var cart1 = {
+                  count: 0,
+                  added:[''],
+                  det:[{
+                      name:'demo', 
+                      details:{
+                          img:'/mihome.png',
+                          price:100,
+                          qty:1,
+                          col:'Red'
+                      }
+                  }],
+                  purch: false
+                };
+                const returnedclient = Object.assign(cart,cart1);
+            }
           },
           "notifyMerchant":
 function notifyMerchant(eventName,data){
@@ -171,9 +199,10 @@ function notifyMerchant(eventName,data){
         Paytm.CheckoutJS.init(config).
 then(function onSuccess() {
     Paytm.CheckoutJS.invoke();
-    console.log('SUCCESS')
+    console.log('Server communicated successfully')
 }).catch(function onError(error) {
   console.log("Error => ", error);
+  //router.reload('/payer')
 });
 }
 
@@ -192,15 +221,30 @@ then(function onSuccess() {
         <link rel="icon" href="/mistore.png" />
       </Head>   
       <Navbar data={state}/>
+{txn=="" && <div class="p-5">
+<h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Payment Gateway</span></h1>
+      <button onClick={order} type="button" 
+    class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
+    text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+        Proceed to pay</button>
+    
+    </div>}
       
-      <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Order Summary</span></h1>
-      <div class="p-5 flex flex-row-reverse grow-0">
+      {txn=="TXN_FAILURE" && 
+      <div class="p-5">
+      <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">There was an error in the payment server</span></h1>
+      <button onClick={order} type="button" 
+      class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
+      text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+          Try Again</button>
+          </div>
+          }      
+{txn=="TXN_SUCCESS" && 
+<h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Your Order has been purchased</span></h1>
 
-<button onClick={order} type="button" 
-        class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
-        text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
-          Place Order</button>
-</div>
+        }
+
+
       
 <div class="px-5 justify-between ">
       <button onClick={previouspager} type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>

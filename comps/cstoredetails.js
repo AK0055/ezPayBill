@@ -5,8 +5,9 @@ export var cstoredet = {
     zip: 0,
     city:'',
     country:'',
-    del:'',
+    del:'Online',
     con:'',
     num:'',
-    em:''
+    em:'',
+    total:0
   };
