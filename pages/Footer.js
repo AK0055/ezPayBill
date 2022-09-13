@@ -39,21 +39,29 @@ return(
       </ul>
 </nav> */}
   
-<footer className="p-3 sticky bottom-0 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+<footer className="p-3 
+             inset-x-0
+             bottom-0 bg-white shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
     
     <ul class="flex flex-wrap items-center mt-3 text-lg text-gray-500 dark:text-gray-400 sm:mt-0">
-    <li class="px-5">
+    <li class="px-3">
     <Link href='/yourinvoices'>Your Orders</Link>
     </li>
-    <li class="px-5">
+    <li class="px-3">
     <Link href='/page2home'>Mi Home</Link>
     </li>
-    <li class="px-5">
+    <li class="px-3 md:items-end">
     <Link href='/page2'>Mi Store</Link>
     </li>
+    
     </ul>
-    <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <Link href='/mainpage'>  ezPayBill</Link>. All Rights Reserved.
+    <div class="p-5 md-flex flex-row justify-between">
+    <span class="text-sm justify-between text-gray-500 sm:text-center dark:text-gray-400">© 2022 <Link href='/mainpage'>  ezPayBill</Link>
+    <p class=" justify-between text-gray-px-3 md:items-end lg-hidden">
+    <Link href='/'>Logout</Link>
+    </p>
     </span>
+    </div>
     </footer>
     </div>
     

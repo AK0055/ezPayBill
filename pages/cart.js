@@ -39,7 +39,29 @@ export default function Home() {
     console.log(cart)
     router.back()
   }
+  const removeall=()=> {
+    console.log(cart)
+    settotal(0)
+    setitems(0)  
+    var cart1 = {
+      count: 0,
+      added:[''],
+      det:[{
+          name:'demo', 
+          details:{
+              img:'/mihome.png',
+              price:100,
+              qty:1,
+              col:'Red'
+          }
+      }],
+      purch: false
+    };
+    const returnedclient = Object.assign(cart,cart1);
+    //router.back()
+  }
   const checkouter=()=> {
+    if(total>0)
     router.push('/checkout')
   }
   
@@ -51,11 +73,21 @@ export default function Home() {
         <link rel="icon" href="/mistore.png" />
       </Head>
       <Navbar data={state}/>
-      <div >
+      
 
-      <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Your Cart</span></h1>
+      {total==0 ? 
+      <div>
+      <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Your Cart is empty</span>
+        </h1>
+        <p class="px-5 max-w-xl text-2xl font-semibold leading-loose text-gray-900">
+      Explore products and add them to your cart
+        </p> 
       </div>
-<div class="p-7">
+      :
+      <div > 
+      <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Your Cart</span></h1>
+      <div class="p-7">
       <div class="p-4 w-full max-w-md bg-white rounded border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
     <div class="flex justify-between items-center mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Items ({cart.count})</h5>
@@ -102,10 +134,29 @@ export default function Home() {
            
         </ul>
    </div>
+   {total>0 && <button onClick={removeall} type="button" class="p-5 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">Remove all</button>}
+
 </div>
 </div>
-<div class="p-5">
-<button onClick={previouspager} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+      </div>}
+
+<div class=" grid p-5 grid-cols-2 gap-y-2">
+
+<button onClick={()=>router.push('/page2home')} type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4
+ focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 
+ focus:outline-none dark:focus:ring-green-800">
+  Mi Home products
+ </button>
+ <button onClick={()=>router.push('/page2')} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
+ focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 
+ focus:outline-none dark:focus:ring-blue-800">
+  Mi Store products
+ </button>
+ </div>
+ <div class="p-5">
+
+ <button onClick={previouspager} type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+
 </div>
        <Footer>
         <a

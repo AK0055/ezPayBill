@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import {cart} from "../comps/carter";
+import {paydetails} from "../comps/paymentdet";
+
 import https from 'https'
 import Script from 'next/script'
 import {merchantCheckoutFile} from '../comps/chkout'
@@ -40,7 +42,7 @@ export default function Home() {
      mid: "VhbDgR06153110234284",
      websiteName: "WEBSTAGING",
      orderId: orderId,
-     callbackUrl: "http://localhost:3000/",
+     callbackUrl: "http://localhost:3000/success",
      txnAmount: {
        value: cstoredet.total,
        currency: "INR",
@@ -165,6 +167,8 @@ function transactionStatus(paymentStatus){
                 cart.purch=true
                 setpurch(true)
                 setstate(0)
+                const returnedclient1 = Object.assign(paydetails,paymentData);
+
             }
             else{
                 cart.purch=false
@@ -221,10 +225,10 @@ then(function onSuccess() {
         <link rel="icon" href="/mistore.png" />
       </Head>   
       <Navbar data={state}/>
-{txn=="" && <div class="p-5">
+{txn=="" && <div class="p-5 flex flex-row md:items-center justify-between gap-4 space-x-10">
 <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Payment Gateway</span></h1>
       <button onClick={order} type="button" 
-    class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
+    class="grow-0 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
     text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
         Proceed to pay</button>
     
@@ -240,8 +244,24 @@ then(function onSuccess() {
           </div>
           }      
 {txn=="TXN_SUCCESS" && 
+<div class="p-5">
 <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Your Order has been purchased</span></h1>
-
+<dl class="p-5 max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+    <div class="flex flex-col pb-3">
+        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Order ID</dt>
+        <dd class="text-lg font-semibold">{paymentData.order}</dd>
+    </div>
+   
+    <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Merchant ID</dt>
+        <dd class="text-lg font-semibold">{paymentData.mid}</dd>
+    </div>
+    <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Amount</dt>
+        <dd class="text-lg font-semibold">₹ {paymentData.amount}</dd>
+    </div>
+</dl>
+</div>
         }
 
 
