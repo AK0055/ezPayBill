@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import {cart} from "../comps/carter";
+import { tarprodarr } from "../comps/invoprod";
 
 export default function Home() {
   const router = useRouter()   
@@ -33,6 +34,27 @@ export default function Home() {
     router.back()
   }
   const order=()=> {
+    /* cart.det.map(data => {
+      var targetprod = {
+        "quantity": data.details.qty,
+        "description": data.name,
+        "price": data.details.price
+      }
+      //if (!tarprodarr.includes(targetprod) ) {
+
+        tarprodarr.push({oid:'',items:targetprod})
+
+    //}
+      
+
+    })
+    
+    tarprodarr.items = tarprodarr.items.filter(check);
+
+    function check(x) {
+      return x['description'] != ''
+    }
+    console.log(tarprodarr) */
     console.log('Total',total)
     cstoredet.total=total
     if(cstoredet.del=='Online')
@@ -143,8 +165,8 @@ export default function Home() {
 </div>
 
 <div class="px-5 justify-between ">
-      <button onClick={previouspager} type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
-      
+{/*       <button onClick={previouspager} type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+ */}      
 
       </div>    
       <Footer>

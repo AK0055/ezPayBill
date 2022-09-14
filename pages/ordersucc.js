@@ -1,3 +1,0 @@
-/*unqiue order id
-date and time of order placed
-stored in a list*/

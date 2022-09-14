@@ -61,6 +61,11 @@ export default function Home() {
     //router.back()
   }
   const checkouter=()=> {
+    cart.det = cart.det.filter((x)=>{return x.name != ''});
+
+    function check(x) {
+      return x['description'] != ''
+    }
     if(total>0)
     router.push('/checkout')
   }
@@ -114,7 +119,7 @@ export default function Home() {
                 <img class="w-12 h-12 rounded" src={data.details.img} alt="Product"/>
             </div>
             <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p class="text-sm font-medium text-gray-900 break-words dark:text-white">
                 {data.name} ({data.details.col})
                 </p>
                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
@@ -140,9 +145,9 @@ export default function Home() {
 </div>
       </div>}
 
-<div class=" grid p-5 grid-cols-3 gap-y-5 gap-x-5">
-<button onClick={previouspager} type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
-
+<div class=" grid p-5 grid-cols-2 gap-y-5 gap-x-5">
+{/* <button onClick={previouspager} type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+ */}
 <button onClick={()=>router.push('/page2home')} type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4
  focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 
  focus:outline-none dark:focus:ring-green-800">

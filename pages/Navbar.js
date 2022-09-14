@@ -49,8 +49,8 @@ export default function Navbar(props) {
         
         <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
         <div class="container flex flex-wrap justify-between items-center ">
-
-            {colorTheme === "light" ? (
+      <button onClick={()=>router.back()} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+            {/* {colorTheme === "light" ? (
              
         <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
         <svg
@@ -87,7 +87,7 @@ export default function Navbar(props) {
           />
         </svg></button>
         
-      )}
+      )} */}
             
             <Link href="/">
             <a class="flex items-center">
@@ -102,14 +102,7 @@ export default function Navbar(props) {
                   <h1 class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ezPayBill</h1>
             </a>
             </Link>
-            {/* {router.pathname=='/summary' &&
-            <div class="flex flex-row md:order-3 ">
-        
-            <button onClick={order} type="button" 
-              class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
-              text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
-                Place Order</button>
-                </div> } */}
+            
                 <div class="flex md:order-3 ">
                 <button onClick={cartpage} type="button" class="flex flex-row text-lg text-black bg-green-200 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-2.5 py-2.5 text-center mr-3 md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                   {/* <img src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/>({cart.count}) */}
