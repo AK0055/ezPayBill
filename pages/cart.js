@@ -75,13 +75,13 @@ export default function Home() {
       <Navbar data={state}/>
       
 
-      {total==0 ? 
+      {items==0 ? 
       <div>
       <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
         <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Your Cart is empty</span>
         </h1>
-        <p class="px-5 max-w-xl text-2xl font-semibold leading-loose text-gray-900 dark:text-white">
-      Explore products and add them to your cart
+        <p class="px-5 max-w-3xl text-lg lg:text-xl font-semibold leading-loose text-gray-900 dark:text-white">
+      Explore products and Add to Cart
         </p> 
       </div>
       :

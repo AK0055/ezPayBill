@@ -14,13 +14,21 @@ import {merchantCheckoutFile} from '../comps/chkout'
 
 import PaytmChecksum from '../comps/PaytmChecksum'
 export var datag = { mid: '', amount: '', order: '', txntoken: '' }
+export var payd = [{ token: "", 
+                    order: "", 
+                    mid: "",
+                    amount: ""}]
+
 export default function Home() {
   const router = useRouter()   
   const [paymentData,setPaymentData]= useState({
         token: "", 
         order: "", 
         mid: "",
-        amount: ""
+        amount: "",
+        time: "",
+        cust:"",
+        pos:""
   })
   const [items,setitems]= useState(0)
   const [carter,setcarter]= useState(false)
@@ -90,13 +98,19 @@ export default function Home() {
            datag.txntoken= JSON.parse(response).body.txnToken
            datag.order= orderId
            datag.mid= mid
-           datag.amount= 
+           var today = new Date();
+           var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+           var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+           var dateTime = date+' '+time;
            setPaymentData({
             ...paymentData,
             token: JSON.parse(response).body.txnToken, 
             order: orderId, 
             mid: mid,
-            amount: cstoredet.total
+            amount: cstoredet.total,
+            time: dateTime,
+            cust: cstoredet.name,
+            pos: cstoredet.pos
         })
        });
      });
@@ -167,7 +181,8 @@ function transactionStatus(paymentStatus){
                 cart.purch=true
                 setpurch(true)
                 setstate(0)
-                const returnedclient1 = Object.assign(paydetails,paymentData);
+                
+               
 
             }
             else{
@@ -189,6 +204,18 @@ function transactionStatus(paymentStatus){
                 };
                 const returnedclient = Object.assign(cart,cart1);
             }
+            
+    if (!paydetails.includes(paymentData) && paymentStatus.STATUS=="TXN_SUCCESS" ) {
+
+        paydetails.push(paymentData);
+
+    }
+
+            //paydetails.push(paymentData)
+            
+            /* const returnedclient1 = Object.assign(paydetails,paymentData);
+                console.log(paymentData) */
+                console.log(paymentData,paydetails)
           },
           "notifyMerchant":
 function notifyMerchant(eventName,data){

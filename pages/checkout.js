@@ -13,7 +13,7 @@ export var moreStore = {
   zip: 787843,
   city:'Oslo',
   country:'Norway',
-  del:'Offline',
+  del:'Online',
   con:'Email',
   num:'389238923',
   em:'soe@eg.com'
@@ -28,7 +28,7 @@ export default function Home() {
   const [zip,setzip]= useState(787843)
   const [city,setcity]= useState('Oslo')
   const [country,setcountry]= useState('Norway')
-  const [del,setdel]= useState('Offline')
+  const [del,setdel]= useState('Online')
   const [con,setcon]= useState('')
   const [num,setnum]= useState('389238923')
   const [em,setem]= useState('soe@eg.com')

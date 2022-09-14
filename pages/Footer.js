@@ -45,7 +45,7 @@ return(
     
     <ul class="flex flex-wrap items-center mt-3 text-lg text-gray-500 dark:text-gray-400 sm:mt-0">
     <li class="px-3">
-    <Link href='/yourinvoices'>Your Orders</Link>
+    <Link href='/yourorders'>Your Orders</Link>
     </li>
     <li class="px-3">
     <Link href='/page2home'>Mi Home</Link>
