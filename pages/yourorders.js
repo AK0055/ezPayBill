@@ -9,6 +9,12 @@ import {cart} from "../comps/carter";
 import {paydetails} from "../comps/paymentdet";
 import {tarprodarr} from "../comps/invoprod";
 import {miscinvo} from "../comps/miscinvo";
+import {status} from "../comps/status";
+import {
+  auth,db,
+} from "../comps/firebaser";
+import { doc, setDoc,getDoc, deleteDoc ,Timestamp } from "firebase/firestore"; 
+import { payd } from './payer';
 
 export default function Home() {
   
@@ -21,8 +27,70 @@ export default function Home() {
   const [state, setstate] = useState(0)
   const [ordernum, setordernum] = useState('')
   const [time, settime] = useState('')
+  const getemail=(user)=>{
+    var uname;
+    try{
+      console.log(user)
+      if(user.email!=null){
+        const emailarr = user.email.split("@");
+        var curruser= emailarr[0];
+        console.log(curruser)
+        setUsern(curruser)
+        uname=curruser
+        console.log(usern)
+        return curruser
+      }
 
+    }
+
+    catch (TypeError) {
+      const user =  auth.currentUser;
+      console.log(user)
+     
+    }
+  }
   const firster=()=>{
+    const user =  auth.currentUser;
+    console.log(user)
+    try{
+    if(user.email!=null){
+    const emailarr = user.email.split("@");
+    var uname= emailarr[0];}
+    }catch (TypeError) {
+      const user =  auth.currentUser;
+      console.log(user)
+     
+    }
+    
+    console.log(cart.det)
+    console.log(uname)
+    if(status.online){
+      var payob={
+        vals:paydetails
+      }
+      var len=paydetails.length
+      console.log(len)
+    getDoc(doc(db, uname, "orders")).then(docSnap => {
+      if (docSnap.exists() && docSnap.data().vals.length==1) {
+        console.log("Document data:", docSnap.data());
+        setDoc(doc(db, uname, "orders"), payob);
+        //const returnedclient = Object.assign(cart,docSnap.data());
+        console.log("Document data:", docSnap.data());
+      } 
+      else if(docSnap.exists() && len==1){
+        const returnedclient = Object.assign(paydetails,docSnap.data().vals);
+        console.log("Document data:", docSnap.data());
+        console.log(paydetails)
+
+      }
+      else {
+        console.log("No such document!");
+        console.log("Document data:", docSnap.data());
+        setDoc(doc(db, uname, "orders"), payob);
+        console.log("Document data:", docSnap.data());
+      }
+    })
+  }
     console.log(tarprodarr)
 
     console.log(cart.det)

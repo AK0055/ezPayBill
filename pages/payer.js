@@ -9,7 +9,10 @@ import {cart} from "../comps/carter";
 import {invos} from "../comps/invos";
 import { tarprodarr } from "../comps/invoprod";
 import {status} from "../comps/status";
-
+import { doc, setDoc,getDoc, deleteDoc ,Timestamp } from "firebase/firestore"; 
+import {
+  auth,db,
+} from "../comps/firebaser";
 import {paydetails} from "../comps/paymentdet";
 
 import https from 'https'
@@ -41,9 +44,32 @@ export default function Home() {
   const [purch,setpurch]=useState(false)
   const [err,seterr]=useState(false)
   const [saved,setsaved]=useState('Save Order')
+  const [usern,setUsern]=useState('User')
+  const getemail=(user)=>{
+    var uname;
+    try{
+      console.log(user)
+      if(user.email!=null){
+        const emailarr = user.email.split("@");
+        var curruser= emailarr[0];
+        console.log(curruser)
+        setUsern(curruser)
+        uname=curruser
+        console.log(usern)
+        return uname
+      }
 
+    }
+
+    catch (TypeError) {
+      const user =  auth.currentUser;
+      console.log(user)
+     
+    }
+  }
   const firster=()=>{
     if(status.online){
+      
     merchantCheckoutFile();
     console.log(cstoredet.total)
     let orderId = "ORD" + new Date().getTime();
@@ -134,6 +160,8 @@ export default function Home() {
     router.back()
   }
   const order=()=> {
+    const user =  auth.currentUser;
+   var uname=getemail(user)
     var config = {
         "root":"",
         "style": {
@@ -209,6 +237,8 @@ function transactionStatus(paymentStatus){
                   }],
                   purch: false
                 };
+                deleteDoc(doc(db, uname, "cart"));  
+
                 const returnedclient1 = Object.assign(invos,cart);
                 const returnedclient = Object.assign(cart,cart1);
             }

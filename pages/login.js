@@ -48,54 +48,15 @@ export default function Home() {
       router.push('/page0');
     } catch (err) {
       console.error(err);
-      setonline(false)
-      status.online=false
-
-      console.log(online)
-      router.push('/page0')
+      if(error=='Firebase: Error (auth/network-request-failed).'){
+        setonline(false)
+        status.online=false
+        console.log(online)
+        router.push('/page0')}
     }
   };
     
-  const  anonysignhandler=  ()=>{
-    try{
-     signInAnonymously(auth)
-     .then(() => {
-       // Signed in..
-     })
-     .catch((error) => {
-       const errorCode = error.code;
-       const errorMessage = error.message;
-       setonline(false)
-       status.online=false
-
-      console.log(online)
-      router.push('/page0')
-     });
-     onAuthStateChanged(auth, (user) => {
-     
-       if (user) {
-         const uid = user.uid;
-         console.log(uid);
-         setAutho('logged in')
-         setonline(true)
-         status.online=true
-
-         router.push('/page0');
-       } else {
-         setAutho('logged out')
-       }
-     });
-    }
-    catch(err){console.error('anony',err);
-      setonline(false)
-      status.online=false
-
-      console.log(online)
-      router.push('/page0')
-    }
-   
-   
-  }
+  
   return (
       
     <div className={styles.container}>
@@ -156,8 +117,8 @@ export default function Home() {
             </div>
         </div> */}
         <button onClick={login} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
-        <button onClick={anonysignhandler} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Anonymous Sign Up</button>
-
+{/*         <button onClick={anonysignhandler} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Anonymous Sign Up</button>
+ */}
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
         New user?   
         <Link href="/">
@@ -178,6 +139,7 @@ export default function Home() {
           Powered by{' '}
           <img src="/mistore.png" alt="Mi" className={styles.logo}/>
         </a>
+        
       </footer>
     </div>
   )

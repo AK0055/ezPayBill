@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import {cart} from '../comps/carter'
+import {paydetails} from "../comps/paymentdet";
 
 import useDarkMode from "../comps/useDarkMode";
 import { initializeApp } from "firebase/app";
@@ -16,10 +18,31 @@ export default function Footer() {
   const router = useRouter();
 
   const logout = () => {
+
+    var cart1 = {
+      count: 0,
+      added:[''],
+      det:[{
+          name:'demo', 
+          details:{
+              img:'/mihome.png',
+              price:100,
+              qty:1,
+              col:'Red'
+          }
+      }],
+      purch: false
+    };
+    const returnedclient = Object.assign(cart,cart1);
+    
+    paydetails.length=1
+    console.log(paydetails)
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     signOut(auth);
+
     router.push('/login');
+  
   };
 return(
     <div>

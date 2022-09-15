@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion';
 import {storeType} from "./page0";
 import { useEffect,useState } from 'react';
+import {paydetails} from "../comps/paymentdet";
+
 import {cart} from '../comps/carter'
 import {
   auth,
@@ -24,6 +26,23 @@ export default function Navbar(props) {
    const [user, loading, error] = useAuthState(auth); 
     const router = useRouter();
     const logout = () => {
+      var cart1 = {
+        count: 0,
+        added:[''],
+        det:[{
+            name:'demo', 
+            details:{
+                img:'/mihome.png',
+                price:100,
+                qty:1,
+                col:'Red'
+            }
+        }],
+        purch: false
+      };
+      const returnedclient = Object.assign(cart,cart1);
+      paydetails.length=1
+    console.log(paydetails)
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
         signOut(auth);

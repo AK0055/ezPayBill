@@ -32,6 +32,7 @@ export default function Home() {
   var [strong,setstrong]=useState(true);
   const [user, loading, error] = useAuthState(auth);
   var [online,setonline]=useState(false);
+  var [alredy,setalredy]=useState('');
 
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function Home() {
         authProvider: "local",
         email,
       });
+      setalredy('')
       setonline(true)
       status.online=true
       router.push('/page0');
@@ -68,59 +70,25 @@ export default function Home() {
       }
       
     } catch (err) {
-      console.error(err);
+      console.error(err.name);
+      
+      var error=err.message
+      console.log(error)
+      if(error=='Firebase: Error (auth/network-request-failed).'){
       setonline(false)
       status.online=false
       console.log(online)
-      router.push('/page0')
-
+      router.push('/page0')}
+        else if(error=='Firebase: Error (auth/email-already-in-use).'){
+          setalredy('User exists already')
+          console.log(alredy)
+        }
     }
   
   
 };
  
- const  anonysignhandler=  ()=>{
-   try{
-    signInAnonymously(auth)
-    .then(() => {
-      // Signed in..
-      
-
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      status.online=false
-      setonline(false)
-
-    console.log(online)
-    router.push('/page0')
-    });
-    onAuthStateChanged(auth, (user) => {
-    
-      if (user) {
-        const uid = user.uid;
-        console.log(uid);
-        setAutho('logged in')
-        setonline(true)
-        status.online=true
-
-        router.push('/page0');
-      } else {
-        setAutho('logged out')
-      }
-    });
-   }
-   catch(err){console.error(err);
-    setonline(false)
-
-    console.log(online)
-    router.push('/page0')
-    
-  }
-  
-  
- }
+ 
  
   return (
     
@@ -143,11 +111,14 @@ export default function Home() {
               }}>
               ezPayBill</motion.span></h1>
         
-
+              {alredy=='' ?
         <p className={styles.description}>
-          Get started by Signing up!
-        </p>
-
+           Get started by Signing up!
+        </p>:
+        <p className={styles.description}>
+        {alredy}
+     </p>
+      }
         <div className={styles.grid}>
         <div class="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div class="space-y-6">
@@ -177,8 +148,8 @@ export default function Home() {
             </div> */}
         
         <button onClick={register} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
-        <button onClick={anonysignhandler} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Anonymous Sign Up</button>
-
+{/*         <button onClick={anonysignhandler} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Anonymous Sign Up</button>
+ */}
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
         Already have an account? 
         <Link href="/login">

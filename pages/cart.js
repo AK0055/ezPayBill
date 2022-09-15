@@ -6,18 +6,9 @@ import { useRouter } from 'next/router'
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import {cart} from "../comps/carter";
-import { doc, setDoc,getDoc, Timestamp } from "firebase/firestore"; 
+import { doc, setDoc,getDoc, deleteDoc ,Timestamp } from "firebase/firestore"; 
 import {status} from "../comps/status";
 
-import {
-    
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-} from "firebase/firestore";
 import {
   auth,db,
 } from "../comps/firebaser";
@@ -32,10 +23,6 @@ export default function Home() {
 
   const [state, setstate] = useState(0)
   const getemail=(user)=>{
-    
-  }
-  const firster=()=>{
-    const user =  auth.currentUser;
     var uname;
     try{
       console.log(user)
@@ -46,6 +33,7 @@ export default function Home() {
         setUsern(curruser)
         uname=curruser
         console.log(usern)
+        return uname
       }
 
     }
@@ -55,17 +43,35 @@ export default function Home() {
       console.log(user)
      
     }
+  }
+
+  const firster=()=>{
+    const user =  auth.currentUser;
+   var uname=getemail(user)
     console.log(cart.det)
+    console.log(uname)
     if(status.online){
     getDoc(doc(db, uname, "cart")).then(docSnap => {
-      if (docSnap.exists()) {
+      if (docSnap.exists() && docSnap.data().count==0) {
         console.log("Document data:", docSnap.data());
-        const returnedclient = Object.assign(cart,docSnap.data());
-
-      } else {
-        console.log("No such document!");
         setDoc(doc(db, uname, "cart"), cart);
+        //const returnedclient = Object.assign(cart,docSnap.data());
+        console.log("Document data:", docSnap.data());
+        setitems(cart.count)
+      } 
+      else if(docSnap.exists() && cart.count==0){
+        const returnedclient = Object.assign(cart,docSnap.data());
+        console.log("Document data:", docSnap.data());
+        console.log(cart)
+        setitems(cart.count)
 
+      }
+      else {
+        console.log("No such document!");
+        console.log("Document data:", docSnap.data());
+        setDoc(doc(db, uname, "cart"), cart);
+        console.log("Document data:", docSnap.data());
+        setitems(cart.count)
       }
     })
   }
@@ -93,9 +99,12 @@ export default function Home() {
     router.back()
   }
   const removeall=()=> {
+    const user =  auth.currentUser;
+   var uname=getemail(user)
     console.log(cart)
     settotal(0)
-    setitems(0)  
+    setitems(0)
+    deleteDoc(doc(db, uname, "cart"));  
     var cart1 = {
       count: 0,
       added:[''],
@@ -192,7 +201,7 @@ export default function Home() {
            
         </ul>
    </div>
-   {total>0 && <button onClick={removeall} type="button" class="p-5 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">Remove all</button>}
+   {items>0 && <button onClick={removeall} type="button" class="p-5 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">Remove all</button>}
 
 </div>
 </div>
