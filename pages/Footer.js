@@ -1,46 +1,29 @@
 import Link from 'next/link'
-import useDarkMode from "../comps/useDarkMode";
+import { useRouter } from 'next/router'
 
+import useDarkMode from "../comps/useDarkMode";
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "../comps/firebaseconfig";
+import {
+  auth,
+  db
+} from "../comps/firebaser"; 
+ import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth, signOut,onAuthStateChanged } from "firebase/auth";
 export default function Footer() {
   const [colorTheme, setTheme] = useDarkMode();
+  const [user, loading, error] = useAuthState(auth); 
+  const router = useRouter();
 
+  const logout = () => {
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    signOut(auth);
+    router.push('/login');
+  };
 return(
     <div>
-        {/* <nav class='content-center'>
-  <ul class="place-content-center p-5 inline-flex -space-x-px">
-    
-    <li>
-        <Link href='/mainpage'>
-      <a  class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Sender</a>
-      </Link>
-    </li>
-    <li>
-    <Link href='/main2page'>
-      <a  class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Client</a>
-      </Link>    </li>
-    <li>
-    <Link href='/products'>
-      <a  class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Products</a>
-      </Link>    </li>
-    
-    </ul>
-</nav>
-<nav>
-  <ul class="p-5 inline-flex -space-x-px">
-  <li>
-    <Link href='/invodetails'>
-      <a  class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Details</a>
-      </Link>    </li>
-    <li>
-        <Link href='/invodetails'>
-      <a  class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Details</a>
-      </Link>    </li>
-    <li>
-    <Link href='/involook'>
-      <a  class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Appearance</a>
-      </Link>    </li>
-      </ul>
-</nav> */}
+        
   
 <footer className="px-3
              inset-x-0
@@ -60,10 +43,10 @@ return(
     </ul>
     <div class="grid p-3 grid-cols-3 gap-y-5 gap-x-5 justify-between items-center">
     <span class=" text-base justify-between text-gray-500 sm:text-center dark:text-gray-400">
-     <Link href='/'>  ezPayBill</Link>
+     <Link href='/page0'>  ezPayBill</Link>
     </span>
-    <span class=" text-base justify-between text-gray-500 dark:text-gray-400 md:items-end sm:text-center lg-hidden">
-    <Link href='/'>Logout</Link>
+    <span onClick={logout} class=" text-base justify-between text-gray-500 dark:text-gray-400 md:items-end sm:text-center lg-hidden">
+    Logout
     </span>
     {colorTheme === "light" ? (
              

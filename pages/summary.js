@@ -57,10 +57,8 @@ export default function Home() {
     console.log(tarprodarr) */
     console.log('Total',total)
     cstoredet.total=total
-    if(cstoredet.del=='Online')
     router.push('/payer')
-    else
-    router.push('/orderdone')
+    
   }
   
   return (

@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import {cart} from "../comps/carter";
 import {invos} from "../comps/invos";
 import { tarprodarr } from "../comps/invoprod";
+import {status} from "../comps/status";
 
 import {paydetails} from "../comps/paymentdet";
 
@@ -39,9 +40,10 @@ export default function Home() {
   const [txn, settxn] = useState('')
   const [purch,setpurch]=useState(false)
   const [err,seterr]=useState(false)
+  const [saved,setsaved]=useState('Save Order')
 
   const firster=()=>{
-    
+    if(status.online){
     merchantCheckoutFile();
     console.log(cstoredet.total)
     let orderId = "ORD" + new Date().getTime();
@@ -123,7 +125,7 @@ export default function Home() {
      post_req.write(post_data);
      post_req.end();
    });
-   
+  }
   } 
   useEffect( firster,[])
   
@@ -267,9 +269,65 @@ then(function onSuccess() {
 }
 
   }
-  
- 
+  const saveorder=()=> {
+    console.log(cart.det)
+    let orderId = "ORD" + new Date().getTime();
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    var temp={
+      token: '', 
+      order: orderId, 
+      mid: '',
+      amount: cstoredet.total,
+      time: dateTime,
+      cust: cstoredet.name,
+      pos: cstoredet.pos
+  }
+  paydetails.push(temp);
+  console.log(paydetails)
+  cart.det.map(data => {
+    var targetprod = {
+      "quantity": data.details.qty,
+      "description": data.name,
+      "price": data.details.price
+    }
 
+      tarprodarr.push({oid:temp.order,items:targetprod})
+
+  console.log(tarprodarr)
+    
+
+  })
+  /* tarprodarr.map(data => {
+  data = data.filter((x)=> {
+    return x.oid != ''
+  });
+
+}) */
+  console.log(tarprodarr)
+  setsaved('Saved')
+  cart.purch=true
+  setpurch(true)
+  setstate(0)
+  var cart1 = {
+    count: 0,
+    added:[''],
+    det:[{
+        name:'demo', 
+        details:{
+            img:'/mihome.png',
+            price:100,
+            qty:1,
+            col:'Red'
+        }
+    }],
+    purch: false
+  };
+  const returnedclient1 = Object.assign(invos,cart);
+  const returnedclient = Object.assign(cart,cart1);
+}
   return (
     
     <div class=" dark:bg-gray-800 text-gray-900 dark:text-white">
@@ -281,12 +339,22 @@ then(function onSuccess() {
         <link rel="icon" href="/mistore.png" />
       </Head>   
       <Navbar data={state}/>
+      {!status.online ?  
+      <div class="p-5 flex flex-row md:items-center justify-between gap-4 space-x-10">    
+      <h1 class="p-5 mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">You are currently offline so your order is saved until it is purchased</span></h1>
+      <button onClick={saveorder} type="button" 
+    class="grow-0 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg 
+    text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+        {saved}</button>
+        </div>
+:
+<div>
       {err && 
      
       <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Payment Gateway is busy</span></h1>
       
 
-}
+      }
      {!err && <div>
 {txn=="" && <div class="p-5 flex flex-row md:items-center justify-between gap-4 space-x-10">
 <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Payment Gateway</span></h1>
@@ -328,7 +396,7 @@ then(function onSuccess() {
         }
 
 
-</div>}
+</div>} </div> }
 <div class="px-5 justify-between ">
 {/*       <button onClick={previouspager} type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
  */}      {err && 

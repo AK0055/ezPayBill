@@ -6,7 +6,21 @@ import { useRouter } from 'next/router'
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import {cart} from "../comps/carter";
+import { doc, setDoc,getDoc, Timestamp } from "firebase/firestore"; 
+import {status} from "../comps/status";
 
+import {
+    
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+} from "firebase/firestore";
+import {
+  auth,db,
+} from "../comps/firebaser";
 export default function Home() {
   
   
@@ -14,15 +28,54 @@ export default function Home() {
   const [total,settotal]= useState(0)
   const [items,setitems]= useState(0)
   const [carter,setcarter]= useState(false)
-  
+  const [usern,setUsern]=useState('User')
+
   const [state, setstate] = useState(0)
-  
+  const getemail=(user)=>{
+    
+  }
   const firster=()=>{
+    const user =  auth.currentUser;
+    var uname;
+    try{
+      console.log(user)
+      if(user.email!=null){
+        const emailarr = user.email.split("@");
+        var curruser= emailarr[0];
+        console.log(curruser)
+        setUsern(curruser)
+        uname=curruser
+        console.log(usern)
+      }
+
+    }
+
+    catch (TypeError) {
+      const user =  auth.currentUser;
+      console.log(user)
+     
+    }
     console.log(cart.det)
+    if(status.online){
+    getDoc(doc(db, uname, "cart")).then(docSnap => {
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        const returnedclient = Object.assign(cart,docSnap.data());
+
+      } else {
+        console.log("No such document!");
+        setDoc(doc(db, uname, "cart"), cart);
+
+      }
+    })
+  }
         try{
           if(cart.purch==false){
             settotal(cart.det.map(item => item.details.price).reduce((prev, next) => prev + next))
             setitems(cart.det.length)
+            
+            
+
           }
           else{
             settotal(0)

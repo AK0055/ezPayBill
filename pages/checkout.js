@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect,useState } from 'react';
-import {storeType} from "./index";
+import {storeType} from "./page0";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import {cstoredet} from "../comps/cstoredetails";
+import {status} from "../comps/status";
 
 export var moreStore = {
   name: 'Xcompany',
@@ -21,14 +22,16 @@ export var moreStore = {
 
 export default function Home() {
   const router= useRouter()
-
+  var st;
+  if(status.online) st='Online'
+  else st='Offline'
   const [name,setname]= useState('Xcompany')
   const [pos,setpos]= useState('x09203')
   const [street,setstreet]= useState('9 Grove Street')
   const [zip,setzip]= useState(787843)
   const [city,setcity]= useState('Oslo')
   const [country,setcountry]= useState('Norway')
-  const [del,setdel]= useState('Online')
+  const [del,setdel]= useState(st)
   const [con,setcon]= useState('')
   const [num,setnum]= useState('389238923')
   const [em,setem]= useState('soe@eg.com')
@@ -39,7 +42,10 @@ export default function Home() {
     moreStore.zip=zip
     moreStore.city=city
     moreStore.country=country
+    if(status.online)
     moreStore.del=del
+    else
+    moreStore.del='Offline'
     moreStore.con=con
     moreStore.num=num
     moreStore.em=em
@@ -77,7 +83,7 @@ export default function Home() {
         <label for="delivery" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Delivery mode</label>
             <select onChange={(e) => setdel(e.target.value)} id="delivery" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected>Choose a Delivery mode</option>
-            <option value="Online">Direct Delivery</option>
+            {status.online && <option value="Online">Direct Delivery</option>}
             <option value="Offline">Collect from Store, Pay by cash</option>
         </select>
         {del=='Online' &&

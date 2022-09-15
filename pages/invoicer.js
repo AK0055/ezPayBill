@@ -9,11 +9,26 @@ import {cart} from "../comps/carter";
 import {invos} from "../comps/invos";
 import {tarprodarr} from "../comps/invoprod";
 import {miscinvo} from "../comps/miscinvo";
+import { ref, getDownloadURL, uploadBytesResumable,uploadString } from "firebase/storage";
 
 import {cstoredet} from "../comps/cstoredetails";
 import {paydetails} from "../comps/paymentdet";
 import easyinvoice from "easyinvoice";
-
+import { storage } from '../comps/firebaser';
+import {
+    
+    getFirestore,
+    query,
+    getDocs,
+    collection,
+    where,
+    addDoc,
+    TimeStamp,doc, setDoc
+  } from "firebase/firestore";
+  import {
+    auth,db,
+  } from "../comps/firebaser";
+  export var pdfurl='';
 export default function Home() {
   
   
@@ -22,13 +37,36 @@ export default function Home() {
   const [items,setitems]= useState(0)
   const [carter,setcarter]= useState(false)
   const [dup,setdup]= useState(false)
-
+  const [imgUrl, setImgUrl] = useState(null);
+  const [progresspercent, setProgresspercent] = useState(0);
+  const [clicked, setclicked]=useState(false);
+  const [usern,setUsern]=useState('User')
   const [state, setstate] = useState(0)
   var arr=[]
   var arr1=[]
   var vals=[]
   var set;
+  const getemail=(user)=>{
+    try{
+      console.log(user)
+      if(user.email!=null){
+        const emailarr = user.email.split("@");
+        var curruser= emailarr[0];
+        setUsern(curruser)
+        console.log(usern)
+      }
+
+    }
+
+    catch (TypeError) {
+      const user =  auth.currentUser;
+      console.log(user)
+     
+    }
+  }
   const firster=()=>{
+    const user =  auth.currentUser;
+        getemail(user);
     console.log(tarprodarr)
     console.log(cstoredet)
     console.log(storedet)
@@ -122,7 +160,7 @@ const runez=()=>{
     arr = tarprodarr.filter((x)=> {
         return x.oid ==miscinvo.order
       });
-      console.log(arr)
+      console.log('inputer',arr)
       arr.map(data => {
         var temp = {
             "quantity": data.items.quantity,
@@ -148,25 +186,22 @@ const runez=()=>{
         var dateTime = date+time;
         var filename='invo'+dateTime+'.pdf'
         easyinvoice.download(filename, result.pdf);
-        /* const file=result.pdf
+        const file=result.pdf
         
         const storageRef = ref(storage, `${usern}/${filename}`);
         var dataurl = 'data:application/pdf;base64,'+file
         const createdAt = dateTime;
-           console.log('inside adddoc') */
+           console.log('inside adddoc') 
            
-           /* setDoc(doc(db, "cities", "LA"), {
-            name: "Los Angeles",
-            state: "CA",
-            country: "USA"
-          }); */
-          /*  */
+           
             
-       /*  uploadString(storageRef, dataurl, 'data_url').then((snapshot) => {
+        uploadString(storageRef, dataurl, 'data_url').then((snapshot) => {
             console.log('Uploaded a data url');
             getDownloadURL(snapshot.ref).then((downloadURL) => {
                 setImgUrl(downloadURL);pdfurl=downloadURL
                 console.log(pdfurl)
+                window.open( 
+                    downloadURL, "_blank"); 
                 try {
                     const usernow=auth.currentUser.uid
                     const collectionRef = collection(db, usernow);
@@ -181,8 +216,8 @@ const runez=()=>{
                   }
 
           });
-    });*/
-        
+    });
+     
     }
         catch(err) {console.log(err)}
     
@@ -191,7 +226,7 @@ const runez=()=>{
   return (
     <div class="w-screen h-screen dark:bg-gray-800 text-gray-900 dark:text-white">
       <Head>
-        <title>Products</title>
+        <title>Invoices</title>
         
         <link rel="icon" href="/mistore.png" />
       </Head>

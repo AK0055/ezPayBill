@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect,useState } from 'react';
-import {storeType} from "./index";
+import {storeType} from "./page0";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import {storedet} from "../comps/storedetails";
