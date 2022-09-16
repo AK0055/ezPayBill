@@ -83,7 +83,7 @@ export default function Home() {
      mid: "VhbDgR06153110234284",
      websiteName: "WEBSTAGING",
      orderId: orderId,
-     callbackUrl: "http://localhost:3000/success",
+     
      txnAmount: {
        value: cstoredet.total,
        currency: "INR",

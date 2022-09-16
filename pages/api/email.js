@@ -1,4 +1,4 @@
-export default function handler(req, res) {
+export default async function handler(req, res) {
   let nodemailer = require('nodemailer')
   const transporter = nodemailer.createTransport({
     port: 587,     
@@ -21,13 +21,17 @@ export default function handler(req, res) {
       html: `<div>Greetings</div><div>Click <a href=" ${req.body.message}">here</a> to view the Invoice</div>
             <p>Sent from: ezPayBill</p>`
   }
+  await new Promise((resolve, reject) => {
 
   transporter.sendMail(mailData, function (err, info) {
-      if(err)
+      if(err){
         console.log(err)
-      else
+        reject(err);}
+      else{
         console.log(info);
+        resolve(info);}
   })
+});
 
   console.log(req.body)
   res.send('success')
