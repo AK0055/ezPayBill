@@ -23,11 +23,13 @@ import {
   auth,
   db
 } from "../comps/firebaser";
+import { set } from 'nprogress';
 export default function Home() {
   {var [autho,setAutho]=useState('logged out');     var [email,setEmail]=useState('');  var [pwd,setPwd]=useState('');  
     
   const [user, loading, error] = useAuthState(auth);
   var [strong,setstrong]=useState(true);
+  var [load,setload]=useState(false)
 
   useEffect(() => {
     if (loading) return;
@@ -38,19 +40,23 @@ export default function Home() {
   var [online,setonline]=useState(false);
 
   const login = async () => {
+    
     try {
       const res = await signInWithEmailAndPassword(auth, email, pwd);
       const user = res.user;
       status.online=true
-
-      setonline(true)
       
+      setonline(true)
+      setload(true)
       router.push('/page0');
     } catch (err) {
       console.error(err);
+      var error=err.message
+
       if(error=='Firebase: Error (auth/network-request-failed).'){
         setonline(false)
         status.online=false
+        setload(true)
         console.log(online)
         router.push('/page0')}
     }
@@ -116,7 +122,7 @@ export default function Home() {
                 </div>
             </div>
         </div> */}
-        <button onClick={login} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+        <button onClick={login} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{!load? `Login to your account` : `Loading..`}</button>
 {/*         <button onClick={anonysignhandler} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Anonymous Sign Up</button>
  */}
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">

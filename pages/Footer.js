@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {cart} from '../comps/carter'
 import {paydetails} from "../comps/paymentdet";
+import {tarprodarr} from "../comps/invoprod";
+import {status} from "../comps/status";
 
 import useDarkMode from "../comps/useDarkMode";
 import { initializeApp } from "firebase/app";
@@ -36,6 +38,8 @@ export default function Footer() {
     const returnedclient = Object.assign(cart,cart1);
     
     paydetails.length=1
+    tarprodarr.length=1
+
     console.log(paydetails)
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
@@ -66,7 +70,7 @@ return(
     </ul>
     <div class="grid p-3 grid-cols-3 gap-y-5 gap-x-5 justify-between items-center">
     <span class=" text-base justify-between text-gray-500 sm:text-center dark:text-gray-400">
-     <Link href='/page0'>  ezPayBill</Link>
+     {status.online ?<Link href='/page0'>Online Mode</Link> : `Offline Mode`}
     </span>
     <span onClick={logout} class=" text-base justify-between text-gray-500 dark:text-gray-400 md:items-end sm:text-center lg-hidden">
     Logout

@@ -13,6 +13,8 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "../comps/firebaseconfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth, signOut,onAuthStateChanged } from "firebase/auth";
+import {tarprodarr} from "../comps/invoprod";
+
 import {
     auth,db,
   } from "../comps/firebaser";
@@ -123,6 +125,31 @@ export default function Home() {
         console.log("Document data:", docSnap.data());
       }
     })
+    var itob={
+        vals:tarprodarr
+      }
+      var len=tarprodarr.length
+      console.log(len)
+    getDoc(doc(db, uname, "prods")).then(docSnap => {
+      if (docSnap.exists() && docSnap.data().vals.length==1) {
+        console.log("Document data:", docSnap.data());
+        setDoc(doc(db, uname, "prods"), itob);
+        //const returnedclient = Object.assign(cart,docSnap.data());
+        console.log("Document data:", docSnap.data());
+      } 
+      else if(docSnap.exists() && len==1){
+        const returnedclient = Object.assign(tarprodarr,docSnap.data().vals);
+        console.log("Document data:", docSnap.data());
+        console.log(tarprodarr)
+  
+      }
+      else {
+        console.log("No such document!");
+        console.log("Document data:", docSnap.data());
+        setDoc(doc(db, uname, "prods"), itob);
+        console.log("Document data:", docSnap.data());
+      }
+    })
   }
 }
 useEffect( firster,[])
@@ -175,6 +202,7 @@ useEffect( firster,[])
       </main>
 
       <footer className={styles.footer}>
+        {status.online ? 
         <a
           href="https://www.mi.com/in/"
           target="_blank"
@@ -183,6 +211,8 @@ useEffect( firster,[])
           {user && <span>{user} is {status.online ?`Online`:`Offline`}</span>}
           <img src="/mistore.png" alt="Mi" className={styles.logo}/>
         </a>
+        : <span>Offline Mode</span>
+    }
         <span onClick={logout} class=" px-5 text-base justify-between text-gray-500 dark:text-gray-400 md:items-end sm:text-center lg-hidden">
     Logout
     </span>

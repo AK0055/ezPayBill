@@ -33,6 +33,7 @@ export default function Home() {
   const [user, loading, error] = useAuthState(auth);
   var [online,setonline]=useState(false);
   var [alredy,setalredy]=useState('');
+  var [load,setload]=useState(false)
 
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function Home() {
 //console.log(online)
   
     try {
-    
+      setload(true)
       if(pwd && pwd.length>=6){
         const res = await createUserWithEmailAndPassword(auth, email, pwd);
       const user = res.user;
@@ -60,6 +61,8 @@ export default function Home() {
         email,
       });
       setalredy('')
+      
+
       setonline(true)
       status.online=true
       router.push('/page0');
@@ -76,6 +79,8 @@ export default function Home() {
       console.log(error)
       if(error=='Firebase: Error (auth/network-request-failed).'){
       setonline(false)
+      setload(true)
+
       status.online=false
       console.log(online)
       router.push('/page0')}
@@ -147,13 +152,13 @@ export default function Home() {
                 
             </div> */}
         
-        <button onClick={register} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
+        <button onClick={register} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{!load? `Sign Up` : `Loading..`}</button>
 {/*         <button onClick={anonysignhandler} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Anonymous Sign Up</button>
  */}
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-        Already have an account? 
+        Already a Member? 
         <Link href="/login">
-        <a class="text-blue-700 hover:underline dark:text-blue-500">Log In</a>
+        <a class="text-blue-700 hover:underline dark:text-blue-500"> Log In</a>
         </Link>
         
         </div>

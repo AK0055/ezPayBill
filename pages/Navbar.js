@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import {storeType} from "./page0";
 import { useEffect,useState } from 'react';
 import {paydetails} from "../comps/paymentdet";
+import {tarprodarr} from "../comps/invoprod";
 
 import {cart} from '../comps/carter'
 import {
@@ -42,6 +43,7 @@ export default function Navbar(props) {
       };
       const returnedclient = Object.assign(cart,cart1);
       paydetails.length=1
+      tarprodarr.length=1
     console.log(paydetails)
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();

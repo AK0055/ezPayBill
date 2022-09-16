@@ -17,7 +17,7 @@ export var moreStore = {
   del:'Online',
   con:'Email',
   num:'389238923',
-  em:'soe@eg.com'
+  em:'grrreat0055@gmail.com'
 };
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
   const [del,setdel]= useState(st)
   const [con,setcon]= useState('')
   const [num,setnum]= useState('389238923')
-  const [em,setem]= useState('soe@eg.com')
+  const [em,setem]= useState('grrreat0055@gmail.com')
   const addstore=()=> {
     moreStore.name = name
     moreStore.pos= pos
@@ -47,7 +47,6 @@ export default function Home() {
     else
     moreStore.del='Offline'
     moreStore.con=con
-    moreStore.num=num
     moreStore.em=em
     console.log(moreStore)
     const returnedclient = Object.assign(cstoredet,moreStore);
@@ -108,24 +107,13 @@ export default function Home() {
         }
         </div>
           <div>
-          <label for="comm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Mode of communication</label>
-            <select onChange={(e) => setcon(e.target.value)} id="comm" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option selected>Choose a mode of contact</option>
-            <option value="Whatsapp">Whatsapp</option>
-            <option value="Email">Email</option>
-            </select>
-            {con=='Whatsapp' && 
-            <div>
-            <label for="wap" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Whatsapp number</label>
-            <input onChange={(e) => setnum(e.target.value)} type="text" id="wap" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="9438434894" required/>
-            </div>
-           }
-           {con=='Email' && 
+          
+            
             <div>
             <label for="em" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email ID</label>
             <input onChange={(e) => setem(e.target.value)} type="text" id="em" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="someone@example.com" required/>
             </div>
-           }
+           
            </div>
         </div>
       </div>

@@ -102,7 +102,6 @@ export default function Home() {
             </div>
             <div>
             <h4 class="text-base font-semibold text-gray-900 dark:text-white">Contact Information</h4>
-            {cstoredet.num && <p class="my-1 font-semibold">{cstoredet.num}</p>}
             {cstoredet.em && <p class="my-1 font-semibold">{cstoredet.em}</p>}
             </div>
             </blockquote>

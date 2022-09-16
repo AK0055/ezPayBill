@@ -90,6 +90,31 @@ export default function Home() {
         console.log("Document data:", docSnap.data());
       }
     })
+    var itob={
+      vals:tarprodarr
+    }
+    var len=tarprodarr.length
+    console.log(len)
+  getDoc(doc(db, uname, "prods")).then(docSnap => {
+    if (docSnap.exists() && docSnap.data().vals.length==1) {
+      console.log("Document data:", docSnap.data());
+      setDoc(doc(db, uname, "prods"), itob);
+      //const returnedclient = Object.assign(cart,docSnap.data());
+      console.log("Document data:", docSnap.data());
+    } 
+    else if(docSnap.exists() && len==1){
+      const returnedclient = Object.assign(tarprodarr,docSnap.data().vals);
+      console.log("Document data:", docSnap.data());
+      console.log(tarprodarr)
+
+    }
+    else {
+      console.log("No such document!");
+      console.log("Document data:", docSnap.data());
+      setDoc(doc(db, uname, "prods"), itob);
+      console.log("Document data:", docSnap.data());
+    }
+  })
   }
     console.log(tarprodarr)
 
@@ -139,12 +164,12 @@ export default function Home() {
     <div class="flex justify-between items-center mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white sdark:text-white">Orders</h5>
         
-            <div>
+           {status.online && <div>
    <span class="text-lg font-bold text-blue-600  dark:text-blue-500 ">
             
             Invoices
             </span>
-</div>
+</div>}
    </div>
    <div class="flow-root">
         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -171,17 +196,17 @@ export default function Home() {
                 Total: ₹ {data.amount}
                 </p>
             </div>
-
+            {status.online &&
             <button onClick={()=>{miscinvo.order=data.order
                                     miscinvo.time=data.time
-                                    
+                                    console.log('products',tarprodarr)
                                     console.log('Orderhandler',miscinvo)
                                     router.push('/invoicer')
                                 
                                 }} 
                                     type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
              focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Get invoice</button>
-
+            }
         </div>
     </li>
       ))}
