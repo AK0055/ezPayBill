@@ -8,6 +8,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@capacitor/android": "^4.2.0",
+    "@capacitor/cli": "^4.2.0",
+    "@capacitor/core": "^4.2.0",
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
     "easyinvoice": "^2.3.3",

@@ -1,12 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import scam from '../public/cam.jpg'
-import ap from '../public/ap.jpg'
-import sl from '../public/sl.jpg'
-import sc from '../public/sc.jpg'
+
 import {storedet} from "../comps/storedetails";
 
-import mistore from '../public/mistore.png'
+
 import Link from 'next/link'
 import { useEffect,useState } from 'react';
 import { useRouter } from 'next/router'
@@ -50,26 +46,16 @@ export default function Home() {
 <div className={styles.grid}>
           <a  onClick={prodhandler1} className={styles.card}>
             <h3>Smart Cameras</h3>
-            <Image
-            src={scam}
-            alt="Smartcam"
-            width={225} 
-            height={225} 
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
+            <img src='/cam.jpg' alt="Smartcam" width="225" height="225"/>
+
+            
           </a>
   
           <a onClick={prodhandler4} className={styles.card}>
             <h3>Smart Cleaners</h3>
-            <Image
-            src={sc}
-            alt="Smart Cleaners"
-            width={225} 
-            height={225}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
+            <img src='/sc.jpg'  alt="Smart Cleaners" width="225" height="225"/>
+
+           
   
           </a>
         </div>

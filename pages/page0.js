@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import mihome from '../public/mihome.png'
 import mistore from '../public/mistore.png'
 import Link from 'next/link'
@@ -172,28 +171,18 @@ useEffect( firster,[])
         <div className={styles.grid}>
           <a  onClick={storehandler1} className={styles.card}>
             <h3 class="font-semibold">Mi Home</h3>
-            <Image
-            src={mihome}
-            alt="Mi home"
-            width={225} 
-            height={225} 
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
+            <img src='/mihome.png'  alt="Mi home" width="225" height="225"/>
+
+            
         
           </a>
           
           
           <a onClick={storehandler2} className={styles.card}>
             <h3 class="font-semibold">Mi Store</h3>
-            <Image
-            src={mistore}
-            alt="Mi store"
-            width={225} 
-            height={225}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
+            <img src='/mistore.png' alt="Mi store" width="225" height="225"/>
+
+           
             
           </a>
           

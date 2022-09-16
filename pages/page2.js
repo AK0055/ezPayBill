@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import sp from '../public/sp.jpg'
 import tv from '../public/tv.jpg'
 import lap from '../public/lap.jpg'
@@ -58,14 +57,8 @@ export default function Home() {
 <div className={styles.grid}>
           <a  onClick={prodhandler2} className={styles.card}>
             <h3>Smartphones</h3>
-            <Image
-            src={sp}
-            alt="Smartphones"
-            width={225} 
-            height={225} 
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />{/* <br/>
+            <img src='/sp.jpg'  alt="Smartphones" width="225" height="225"/>
+          {/* <br/>
                   <button type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
                   <span class="text-lg font-medium text-gray-900 line-through dark:text-white">$109</span><span class="ml-3 text-lg font-medium">$79</span>
  */}
@@ -74,38 +67,22 @@ export default function Home() {
           
           <a onClick={prodhandler3} className={styles.card}>
             <h3>TVs</h3>
-            <Image
-            src={tv}
-            alt="TVs"
-            width={225} 
-            height={225}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
+            <img src='/tv.jpg'  alt="TVs" width="225" height="225"/>
+
   
           </a>
           <a onClick={prodhandler4} className={styles.card}>
             <h3>Laptops</h3>
-            <Image
-            src={lap}
-            alt="Laptops"
-            width={225} 
-            height={225}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
+            <img src='/lap.jpg'  alt="laptops" width="225" height="225"/>
+
+            
   
           </a>
           <a onClick={prodhandler5} className={styles.card}>
             <h3>Accessories</h3>
-            <Image
-            src={acc}
-            alt="Accessories"
-            width={225} 
-            height={225}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-          />
+            <img src='/acc.jpg'  alt="accys" width="225" height="225"/>
+
+  
   
           </a>
         </div>
