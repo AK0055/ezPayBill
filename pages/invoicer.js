@@ -16,7 +16,6 @@ import {paydetails} from "../comps/paymentdet";
 import easyinvoice from "easyinvoice";
 import { storage } from '../comps/firebaser';
 import {setImmediate} from 'timers'
-import { SMTPClient } from 'emailjs';
 import {status} from "../comps/status";
 
 import {
