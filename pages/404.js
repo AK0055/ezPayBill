@@ -21,7 +21,7 @@ const NotFound = () => {
                   class="text-2xl md:text-3xl font-light leading-normal"
                 >Sorry we couldn't find this page. </p>
               <p class="mb-8">But dont worry, you can find plenty of other things on our homepage.</p>
-              <Link href='/mainpage'>
+              <Link href='/page0'>
               <button class="px-4 inline py-2 text-sm font-medium leading-5 shadow text-white transition-colors duration-150 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-blue bg-blue-600 active:bg-blue-600 hover:bg-blue-700">back to homepage</button>
               </Link>
               <button onClick={goback} class="px-4 inline py-2 text-sm font-medium leading-5 shadow text-white transition-colors duration-150 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-blue bg-blue-600 active:bg-blue-600 hover:bg-blue-700">Go to previous page</button>
