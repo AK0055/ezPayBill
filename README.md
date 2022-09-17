@@ -100,6 +100,7 @@ CVV: 123
 13. Upon moving to next page click `Get Invoice` to download the invoice locally as a PDF and also send its copy via entered Email ID.
 14. Check the recieved email in your spam folder.
 15. Light and Dark modes can be toggled from the footer according to your preference.
+16. For testing purposes, dummy data is filled by default if fields are left blank.
 
 ## Note
 This app can be run in both online and offline modes. In the login page, if the app can't connect to the internet then it will proceed to run in offline mode.
