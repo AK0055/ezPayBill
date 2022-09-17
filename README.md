@@ -69,7 +69,7 @@ efficiency and ultimately, client experience.
 This application supports both Windows and Android platforms. To get started, follow these instructions.
 
 ### For Windows 
-1. Download from [here](https://drive.google.com/file/d/16imtHgwCXG3wpuoS_0dBV6nNfwVpPZxx/view?usp=sharing) and run the installer.
+1. Download from [here](https://drive.google.com/file/d/12P7vhpqZeIyUvCtFrZoZMxlZTrcn6W0X/view?usp=sharing) and run the installer.
 2. Wait for the installer window to close even if the application opens by itself. Once the installer closes, the app is ready to use.
 3. If the app is closed by mistake, you can always find it in `C:\Users\<your-pcname>\AppData\Local\ezpaybill\ezpaybill.exe` to open again. Make sure to enable hidden items option in file explorer settings to view the folders.
 
