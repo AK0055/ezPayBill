@@ -73,7 +73,7 @@ This application supports both Windows and Android platforms. To get started, fo
 2. Launch `ezPayBill3.exe` present in the extracted folder
 
 ### For Android 
-1. Download and install `ezPayBill.apk` from the repository to your Android device and launch the app.
+1. Download and install `ezpaybill.apk` from the repository to your Android device and launch the app.
 
 
 
