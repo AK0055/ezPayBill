@@ -1,23 +1,23 @@
 import Head from 'next/head'
-import {storedet} from "../comps/storedetails";
+import {storedet} from "../../comps/storedetails";
 import { Menu } from '@headlessui/react'
 import {Transition } from '@headlessui/react'
 import { Fragment,useRef} from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { motion } from 'framer-motion';
-import {useState,useEffect } from 'react';
+import {useState,useEffect} from 'react';
 import { useRouter } from 'next/router'
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import {cart} from "../comps/carter";
+import Footer from "../Footer";
+import Navbar from "../Navbar";
+import {cart} from "../../comps/carter";
 
 export var product = {
-    prodimg:'/sc.jpg',
-    prodname:'Smart Cleaner',
+    prodimg:'/cam.jpg',
+    prodname:'Smart Camera',
     prodcolor: 'Red',
     prodquan: 1,
     cart:false,
-    price: 37899
+    price:5099
     
 };
 export default function Home() {
@@ -37,14 +37,9 @@ export default function Home() {
       return x == product.prodname
     }
     if(cart.added.find(check)) {console.log('Already added');setstatus('Remove');setcarter(false)} 
-    else {console.log('Not added');setstatus('Add to cart');setcarter(true)}
+                                          else {console.log('Not added');setstatus('Add to cart');setcarter(true)}
   } 
   useEffect( firster,[])
-  
-  const previouspager=()=> {
-    console.log(cart)
-    router.back()
-  }
   const cartpage = () => {
     cart.det = cart.det.filter(check);
 
@@ -53,6 +48,10 @@ export default function Home() {
    }  
    router.push('/cart'); 
  };
+  const previouspager=()=> {
+    console.log(cart)
+    router.back()
+  }
   const colorsecred=()=>{
     product.prodcolor='Red'
     setcol('Red')
@@ -104,7 +103,7 @@ export default function Home() {
   
       } 
       
-     }; 
+     };
   return (
     <div class="dark:bg-gray-800 text-gray-900 dark:text-white">
       <Head>
@@ -158,8 +157,8 @@ export default function Home() {
         <motion.circle cx="20" cy="20" r="20" stroke="black" stroke-width="1" fill="blue"
                 whileTap={{
                   scale: 0.7,
-                  borderRadius: "100%"
-
+                  borderRadius: "100%",
+                  rotate: 90
               }}/>
         </svg>
         </a>
@@ -245,11 +244,9 @@ export default function Home() {
     </div>
 </div>
       </div>
-      <div class="p-5 flex flex-row">
+      <div class="p-5">
 {/* <button onClick={previouspager} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
- */}
-</div>
-
+ */}</div>
       <Footer>
         <a
           href=""

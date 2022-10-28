@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     port: 587,     
     host: "smtp-mail.outlook.com",
        auth: {
-        user: 'ezpaybiller@outlook.com',
+        user: 'ezpaybill123@outlook.com',
         pass: process.env.NEXT_PUBLIC_PASS
          },
          secure: false,
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   });
   
   const mailData = {
-      from: 'ezpaybiller@outlook.com',
+      from: 'ezpaybill123@outlook.com',
       to: req.body.email,
       subject: `${req.body.name}: Your Invoice for ${req.body.order}`,
       text: req.body.message + " | Sent from: ezPayBill" ,

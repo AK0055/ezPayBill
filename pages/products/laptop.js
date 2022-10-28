@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { storedet } from "../comps/storedetails";
+import { storedet } from "../../comps/storedetails";
 import { Menu } from '@headlessui/react'
 import { Transition } from '@headlessui/react'
 import { Fragment, useRef } from 'react'
@@ -7,10 +7,9 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import { cart } from "../comps/carter";
-import { tarprodarr } from "../comps/invoprod";
+import Footer from "../Footer";
+import Navbar from "../Navbar";
+import {cart} from "../../comps/carter";
 
 export var product = {
   prodimg: '/lap.jpg',

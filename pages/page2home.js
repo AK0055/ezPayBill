@@ -20,11 +20,11 @@ export default function Home() {
   }  
   const prodhandler1=()=> {
     prodType.prodtype='Smart Camera'
-    router.push('/scam')
+    router.push('/products/scam')
   }
   const prodhandler4=()=> {
     prodType.prodtype='Smart cleaners'
-    router.push('/sc')
+    router.push('/products/sc')
   }
   return (
     <div class=" dark:bg-gray-800 text-gray-900 dark:text-white">
@@ -38,10 +38,6 @@ export default function Home() {
 
       <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">Choose a <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Smart product</span> Type</h1>
 
-
-        {/* <p className="description">
-          Get started by choosing your store type 
-        </p> */}
 
 <div className={styles.grid}>
           <a  onClick={prodhandler1} className={styles.card}>
@@ -74,22 +70,7 @@ export default function Home() {
           <img src="/mistore.png" alt="Vercel" className="logo" />
         </a>
       </Footer>
-        {/* <div className={styles.container}>
-      <Head>
-        <title>ezPayBill</title>
-        <link rel="icon" href="/mistore.png" />
-      </Head>
-
-      <main className={styles.main}>
-
-        <p class="font-sans hover:font-serif">
-          Choose product category
-        </p>
-
         
-      </main>
-      
-    </div> */}
     </div>
     
   )

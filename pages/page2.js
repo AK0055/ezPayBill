@@ -23,19 +23,19 @@ export default function Home() {
   }
   const prodhandler2=()=> {
     prodType.prodtype='Smartphone'
-    router.push('/sphone')
+    router.push('/products/sphone')
   }
   const prodhandler3=()=> {
     prodType.prodtype='TV'
-    router.push('/tv')
+    router.push('/products/tv')
   }
   const prodhandler4=()=> {
     prodType.prodtype='Laptop'
-    router.push('/laptop')
+    router.push('/products/laptop')
   }
   const prodhandler5=()=> {
     prodType.prodtype='Accessory'
-    router.push('/accy')
+    router.push('/products/accy')
   }
   return (
     <div class=" dark:bg-gray-800 text-gray-900 dark:text-white">

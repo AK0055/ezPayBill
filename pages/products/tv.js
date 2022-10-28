@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {storedet} from "../comps/storedetails";
+import {storedet} from "../../comps/storedetails";
 import { Menu } from '@headlessui/react'
 import {Transition } from '@headlessui/react'
 import { Fragment,useRef} from 'react'
@@ -7,17 +7,17 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { motion } from 'framer-motion';
 import {useState,useEffect } from 'react';
 import { useRouter } from 'next/router'
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import {cart} from "../comps/carter";
+import Footer from "../Footer";
+import Navbar from "../Navbar";
+import {cart} from "../../comps/carter";
 
 export var product = {
-    prodimg:'/acc.jpg',
-    prodname:'Mi Power Bank 30000mAh',
+    prodimg:'/tv.jpg',
+    prodname:'Xiaomi Smart TV 4K',
     prodcolor: 'Red',
     prodquan: 1,
     cart:false,
-    price: 2999
+    price: 26499
     
 };
 export default function Home() {
@@ -114,7 +114,7 @@ export default function Home() {
       <Navbar data={state}/>
       <div >
 
-      <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Accessories</span></h1>
+      <h1 class="p-5 mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">TVs</span></h1>
 
 <div class="p-10 w-full max-w-sm bg-white rounded-2xl shadow-md dark:bg-gray-800 dark:border-gray-700">
 {status=="Remove" &&
